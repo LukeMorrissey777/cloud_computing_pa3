@@ -8,7 +8,11 @@ read server_num
 
 if [ $server_num = '1' ]
 then
-    sudo ifconfig ens192 192.168.100.11 netmask 255.255.255.0
+    # Set ip in 192.168.100.x range
+    sudo cp ws1.yaml 01-network-manager-all.yaml
+    sudo netplan apply
+
+    # Set up nat
     sudo echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
     sudo sysctl -p
     sudo apt install iptables-persistent -y
@@ -20,19 +24,21 @@ fi
 
 if [ $server_num = '2' ]
 then
-    sudo ifconfig ens192 192.168.100.12 netmask 255.255.255.0
+    # Set ip in 192.168.100.x range
+    sudo cp ws2.yaml 01-network-manager-all.yaml
+    sudo netplan apply
 fi
 
 if [ $server_num = '3' ]
 then
-    sudo ifconfig ens160 192.168.100.101 netmask 255.255.255.0
-    sudo ip route add default via 192.168.100.11 dev ens160
-    sudo echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+    # Set ip in 192.168.100.x range
+    sudo cp db1.yaml 01-network-manager-all.yaml
+    sudo netplan apply
 fi
 
 if [ $server_num = '4' ]
 then
-    sudo ifconfig ens160 192.168.100.1012 netmask 255.255.255.0
-    sudo ip route add default via 192.168.100.11 dev ens160
-    sudo echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+    # Set ip in 192.168.100.x range
+    sudo cp db2.yaml 01-network-manager-all.yaml
+    sudo netplan apply
 fi
