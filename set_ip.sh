@@ -9,7 +9,7 @@ read server_num
 if [ $server_num = '1' ]
 then
     # Set ip in 192.168.100.x range
-    sudo cp ws1.yaml 01-network-manager-all.yaml
+    sudo cp ws1.yaml /etc/netplan/01-network-manager-all.yaml
     sudo netplan apply
 
     # Set up nat
@@ -25,20 +25,20 @@ fi
 if [ $server_num = '2' ]
 then
     # Set ip in 192.168.100.x range
-    sudo cp ws2.yaml 01-network-manager-all.yaml
+    sudo cp ws2.yaml /etc/netplan/01-network-manager-all.yaml
     sudo netplan apply
 fi
 
 if [ $server_num = '3' ]
 then
     # Set ip in 192.168.100.x range
-    sudo cp db1.yaml 01-network-manager-all.yaml
+    sudo cp db1.yaml /etc/netplan/01-network-manager-all.yaml
     sudo netplan apply
 fi
 
 if [ $server_num = '4' ]
 then
     # Set ip in 192.168.100.x range
-    sudo cp db2.yaml 01-network-manager-all.yaml
+    sudo cp db2.yaml /etc/netplan/01-network-manager-all.yaml
     sudo netplan apply
 fi
