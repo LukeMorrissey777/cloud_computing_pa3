@@ -1,3 +1,9 @@
+echo "Which server is this?"
+echo "Enter '1' for db server 1"
+echo "Enter '2' for db server 2"
+read db_num
+cat db${db_num}.cnf
+
 sudo apt-get update
 # Install mariadb
 sudo apt-get install python3-dev mariadb-server libmariadbclient-dev libssl-dev -y
@@ -8,7 +14,11 @@ sudo mysql -e "DROP USER ''@'$(hostname)'"
 sudo mysql -e "DROP DATABASE test"
 sudo mysql -e "FLUSH PRIVILEGES"
 
-# Create maria-db database
+# Change some config stuff necessary for db replication
+sudo cp db${db_num}.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+sudo systemctl restart mariadb
+
+# Create user that can access db remotely
 sudo mysql -e "CREATE DATABASE myproject CHARACTER SET UTF8;"
-sudo mysql -d "GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.100.%' IDENTIFIED BY 'my-new-password' WITH GRANT OPTION;"
+sudo mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.100.%' IDENTIFIED BY 'password' WITH GRANT OPTION;"
 sudo mysql -e "FLUSH PRIVILEGES"
