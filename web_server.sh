@@ -1,6 +1,6 @@
 # Install and start python virtual environment
 sudo apt-get update
-sudo apt install python3.8-venv -y
+sudo apt install python3.8-venv mariadb-client -y
 python3 -m venv venv
 source venv/bin/activate
 
