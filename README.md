@@ -23,8 +23,31 @@ Now the databases should be connected to the internet.
 
 ### Step 2: Set up master-master db replication
 
-First we need to install mariadb and set up some intial settings necissary for replication. On the dbs clone this repo and then run:
+First we need to install mariadb and set up some intial settings necissary for replication. On the each of the dbs clone this repo and then run:
 ```bash
 sudo bash db_part1.sh
 ```
 
+Now we will set up master-slave replication from 1 to 2.
+
+On db2 run:
+```
+sudo mysql -e "SHOW MASTER STATUS;"
+```
+
+On db1 run:
+```
+sudo bash db_part2.sh
+```
+
+Last we will set up master-slave replication from 2 to 1.
+
+On db2 run:
+```
+sudo mysql -e "SHOW MASTER STATUS;"
+```
+
+On db1 run:
+```
+sudo bash db_part2.sh
+```

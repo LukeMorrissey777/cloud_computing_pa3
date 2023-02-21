@@ -22,3 +22,8 @@ sudo systemctl restart mariadb
 sudo mysql -e "CREATE DATABASE myproject CHARACTER SET UTF8;"
 sudo mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.100.%' IDENTIFIED BY 'password' WITH GRANT OPTION;"
 sudo mysql -e "FLUSH PRIVILEGES"
+
+# Create user for replication
+sudo mysql -e "CREATE USER 'replication'@'%' identified by 'securepassword';"
+sudo mysql -e "GRANT REPLICATION SLAVE ON *.* TO 'replication'@'%';"
+sudo mysql -e "FLUSH PRIVILEGES"
