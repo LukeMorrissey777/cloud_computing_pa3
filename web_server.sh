@@ -19,12 +19,8 @@ pip install django-filer
 pip install djangocms-text-ckeditor
 pip install djangocms-link djangocms-file djangocms-picture djangocms-video djangocms-googlemap djangocms-snippet djangocms-style
 
-# Create project
-git clone https://github.com/LukeMorrissey777/cloud_computing_pa1.git
-
 # Migrate data to db
-cd cloud_computing_pa1
-python manage.py migrate --database=db_1
+python manage.py migrate --database=db1
 python manage.py collectstatic
 sudo mv 000-default.conf /etc/apache2/sites-available/
 
