@@ -1,11 +1,20 @@
 # Install and start python virtual environment
 sudo apt-get update
-sudo apt install python3.8-venv mariadb-client -y
+sudo apt install python3.8-venv -y
 python3 -m venv venv
 source venv/bin/activate
 
 # Install django
 pip install django==3.2
+
+# Install mariadb
+sudo apt-get install python3-dev mariadb-server libmariadbclient-dev libssl-dev -y
+# This essentially runs mysql_secure_installation script without prompts
+sudo mysql -e "UPDATE mysql.user SET Password = PASSWORD('password') WHERE User = 'root'"
+sudo mysql -e "DROP USER ''@'localhost'"
+sudo mysql -e "DROP USER ''@'$(hostname)'"
+sudo mysql -e "DROP DATABASE test"
+sudo mysql -e "FLUSH PRIVILEGES"
 
 pip install mysqlclient packaging
 
