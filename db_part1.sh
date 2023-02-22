@@ -2,7 +2,6 @@ echo "Which server is this?"
 echo "Enter '1' for db server 1"
 echo "Enter '2' for db server 2"
 read db_num
-cat db${db_num}.cnf
 
 sudo apt-get update
 # Install mariadb

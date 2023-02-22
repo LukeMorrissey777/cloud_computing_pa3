@@ -1,3 +1,5 @@
+Repo url: https://github.com/LukeMorrissey777/cloud_computing_pa2
+
 # High Availablity
 
 For this assignment we have 2 master-master replicating database servers and 2 webservers. This readme will explain how to set it up:
@@ -50,4 +52,11 @@ sudo mysql -e "SHOW MASTER STATUS;"
 On db1 run:
 ```
 sudo bash db_part2.sh
+```
+
+### Step 3: Set up webservers
+
+Simply run:
+```bash
+bash web_server.sh
 ```
