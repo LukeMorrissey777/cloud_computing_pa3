@@ -5,13 +5,13 @@ class DBRouter:
         """
         Reads go to a randomly-chosen replica.
         """
-        return random.choice(['db1', 'db2'])
+        return random.choice(['default', 'db2'])
 
     def db_for_write(self, model, **hints):
         """
         Writes  go to randomly chosen replica.
         """
-        return random.choice(['db1', 'db2'])
+        return random.choice(['default', 'db2'])
 
     def allow_relation(self, obj1, obj2, **hints):
         return True

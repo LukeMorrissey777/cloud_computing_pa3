@@ -29,7 +29,7 @@ pip install djangocms-text-ckeditor
 pip install djangocms-link djangocms-file djangocms-picture djangocms-video djangocms-googlemap djangocms-snippet djangocms-style
 
 # Migrate data to db
-python manage.py migrate --database=db1
+python manage.py migrate
 python manage.py collectstatic
 sudo mv 000-default.conf /etc/apache2/sites-available/
 
