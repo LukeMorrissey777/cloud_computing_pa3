@@ -116,6 +116,7 @@ DATABASES = {
         'PASSWORD': 'password',
         'HOST': '192.168.100.101',
         'PORT': '',
+        'OPTIONS'  : { 'init_command' : 'SET storage_engine=MyISAM', },
     },
     'db2': {
         'ENGINE': 'django.db.backends.mysql',
@@ -124,6 +125,7 @@ DATABASES = {
         'PASSWORD': 'password',
         'HOST': '192.168.100.102',
         'PORT': '',
+        'OPTIONS'  : { 'init_command' : 'SET storage_engine=MyISAM', },
     }
 }
 
