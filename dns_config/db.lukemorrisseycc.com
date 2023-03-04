@@ -12,3 +12,5 @@ $TTL	604800
 @	IN	NS	ns.lukemorrissey.com.
 @	IN	A	172.20.74.107
 ns	IN	A	172.20.74.107
+@	IN	A	172.20.74.132
+ns	IN	A	172.20.74.132

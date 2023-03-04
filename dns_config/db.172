@@ -11,3 +11,4 @@ $TTL	604800
 ;
 @	IN	NS	ns.
 107	IN	PTR	ns.lukemorrisseycc.com.
+132	IN	PTR	ns.lukemorrisseycc.com.
