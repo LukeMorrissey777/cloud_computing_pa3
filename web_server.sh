@@ -1,3 +1,9 @@
+echo "Which server is this?"
+echo "Enter '1' for ws server 1"
+echo "Enter '2' for ws server 2"
+echo "Enter '3' for ws server 3"
+read ws_num
+
 # Install and start python virtual environment
 sudo apt-get update
 sudo apt install python3.8-venv -y
@@ -29,13 +35,20 @@ pip install djangocms-text-ckeditor
 pip install djangocms-link djangocms-file djangocms-picture djangocms-video djangocms-googlemap djangocms-snippet djangocms-style
 
 # Migrate data to db
-python manage.py migrate
+if [ $ws_num = '1' ]
+then
+    python manage.py migrate
+fi
 python manage.py collectstatic
-sudo mv 000-default.conf /etc/apache2/sites-available/
 
 # Create superuser
 export DJANGO_SUPERUSER_PASSWORD=password
 python manage.py createsuperuser --noinput --username user --email luke.morrissey@colorado.edu
+
+# Add second database availability
+echo "DATABASE_ROUTERS = ['myproject.db_router.DBRouter']" >> myproject/settings.py
+
+sudo mv 000-default.conf /etc/apache2/sites-available/
 
 # Restart apache webserver
 sudo service apache2 restart

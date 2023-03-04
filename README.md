@@ -24,7 +24,7 @@ sudo netplan apply
 
 Now the databases and webservers should be connected to the internet.
 
-### Step 2: Set up first db
+### Step 2: Set up first db step
 
 First we need to install mariadb and set up some intial settings necissary for replication. On the each of the dbs clone this repo and then run:
 ```bash
