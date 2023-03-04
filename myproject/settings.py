@@ -190,4 +190,3 @@ THUMBNAIL_PROCESSORS = (
 )
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
-DATABASE_ROUTERS = ['myproject.db_router.DBRouter']
