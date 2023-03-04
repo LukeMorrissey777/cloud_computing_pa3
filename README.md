@@ -39,6 +39,12 @@ bash web_server.sh
 ```
 
 ### Step X: Set up database replication
+First copy all data from db1 to db2. On db1 run:
+```bash
+sudo mysqldump --databases myproject > dump.sql
+mysql -u root -h 192.168.100.102 -p'password' < dump.sql
+```
+
 Now we will set up master-slave replication from 1 to 2.
 
 On db2 run:
@@ -53,12 +59,12 @@ sudo bash db_part2.sh
 
 Last we will set up master-slave replication from 2 to 1.
 
-On db2 run:
+On db1 run:
 ```
 sudo mysql -e "SHOW MASTER STATUS;"
 ```
 
-On db1 run:
+On db2 run:
 ```
 sudo bash db_part2.sh
 ```

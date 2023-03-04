@@ -49,7 +49,7 @@ python manage.py collectstatic
 # Add second database availability
 echo "DATABASE_ROUTERS = ['myproject.db_router.DBRouter']" >> myproject/settings.py
 
-sudo cp ws_config/000-default.conf /etc/apache2/sites-available/
+sudo cp ws_config/ws-000-default.conf /etc/apache2/sites-available/000-default.conf
 
 # Restart apache webserver
 sudo service apache2 restart
