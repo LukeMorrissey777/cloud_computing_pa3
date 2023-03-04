@@ -14,7 +14,7 @@ sudo mysql -e "DROP DATABASE test"
 sudo mysql -e "FLUSH PRIVILEGES"
 
 # Change some config stuff necessary for db replication
-sudo cp db${db_num}.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+sudo cp db_config/db${db_num}.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 sudo systemctl restart mariadb
 
 # Create user that can access db remotely
