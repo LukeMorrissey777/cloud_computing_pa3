@@ -1,10 +1,11 @@
-Repo url: https://github.com/LukeMorrissey777/cloud_computing_pa2
+Repo url: https://github.com/LukeMorrissey777/cloud_computing_pa3
 
-# Horizontal Scaling
+# High Availabilty
 
 For this assignment we have 2 master-master replicating database servers and 3 webservers behind 2 load balancers. This readme will explain how to set it up:
 
 ### Prereqs
+- 1 dns server vm that has 1 network (1 facing the internet)
 - 2 load balancer server vms that have 2 networks (1 facing the internet and 1 local network)
 - 3 webserver vms that have 1 network (only local network)
 - 2 db vms that have 1 network (only local network)
@@ -31,14 +32,17 @@ First we need to install mariadb and set up some intial settings necissary for r
 sudo bash db_part1.sh
 ```
 
-### Step X: Set up webservers
+### Step 3: Set up webservers
+The first webserver will migrate all the data to db1. The rest will just set up the other necisarry parts.
 
 Simply run:
 ```bash
 bash web_server.sh
 ```
 
-### Step X: Set up database replication
+### Step 4: Set up database replication
+We set the databases up so they are using master-master replication. To make use of this on the webservers we randomly choose to use either db1 or db2 using the db_router.
+
 First copy all data from db1 to db2. On db1 run:
 ```bash
 sudo mysqldump --databases myproject > dump.sql
@@ -69,18 +73,20 @@ On db2 run:
 sudo bash db_part2.sh
 ```
 
-
-
-### Step X: Set up load balancers
+### Step 5: Set up load balancers
+The load balancers are just using apache to load balance between the webservers.
 
 Simply run:
 ```bash
 bash load_balancer.sh
 ```
 
-### Step X: Set up DNS Server
+### Step 6: Set up DNS Server
+The DNS server has the 2 ips of the load balancer corresponding to the domain: `lukemorrisseycc.com`.
 
 Simply run:
 ```bash
 bash dns_server.sh
 ```
+
+Now by specifying the dns server and the search url `lukemorrisseycc.com` you should be able to access the django cms.
