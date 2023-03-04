@@ -31,24 +31,25 @@ sudo apt-get install apache2 libapache2-mod-wsgi-py3 -y
 pip install --upgrade pip
 pip install django-cms
 pip install django-filer
-pip install djangocms-text-ckeditor
+pip install djangocms-text-ckeditor django-storages
 pip install djangocms-link djangocms-file djangocms-picture djangocms-video djangocms-googlemap djangocms-snippet djangocms-style
 
 # Migrate data to db
 if [ $ws_num = '1' ]
 then
     python manage.py migrate
+    # Create superuser
+    export DJANGO_SUPERUSER_PASSWORD=password
+    python manage.py createsuperuser --noinput --username user --email luke.morrissey@colorado.edu
 fi
 python manage.py collectstatic
 
-# Create superuser
-export DJANGO_SUPERUSER_PASSWORD=password
-python manage.py createsuperuser --noinput --username user --email luke.morrissey@colorado.edu
+
 
 # Add second database availability
 echo "DATABASE_ROUTERS = ['myproject.db_router.DBRouter']" >> myproject/settings.py
 
-sudo mv 000-default.conf /etc/apache2/sites-available/
+sudo cp ws_config/000-default.conf /etc/apache2/sites-available/
 
 # Restart apache webserver
 sudo service apache2 restart
